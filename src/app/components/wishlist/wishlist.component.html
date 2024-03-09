@@ -1,0 +1,28 @@
+
+<section class="my-3" *ngIf="popularProduct.length>0">
+    <div class="row g-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" *ngFor="let product of popularProduct">
+       <div class="product h-100 p-2">
+        <i *ngIf="!wishlist.includes($any(product._id) )" (click)="addwishlist(product._id)" class="fa-regular fa-heart heart"></i>
+        <i *ngIf="wishlist.includes($any(product._id))" (click)="removefav(product._id)" class="heart text-danger fa-solid fa-heart fa-2x"></i>
+       <header [routerLink]="['/details',product._id] " class="cursor-pointer">
+        <img [src]="product.imageCover" class="w-100" [alt]="product.title" [title]="product.title">
+        <h3 class="h6 small">{{product.title | cutext:3}}</h3>
+         <h4 class="text-main h6">{{product.category.name}}</h4>
+         <div class="d-flex align-items-center justify-content-between small">
+            <span class="small">{{product.price | currency:"EGP"}}</span>
+             <p class="mb-0">
+                <i  [class.rating-color]="product.ratingsAverage>=num" *ngFor="let num of [1,2,3,4,5]" class="fas fa-star"></i>
+                <span>{{product.ratingsAverage}}</span>
+             </p>
+         </div>
+       </header>
+       <footer >
+        <button class="btn-main w-100 p-2" #btnadd (click)="goToCart(product._id , btnadd)">add to cart</button>
+    </footer>
+        </div>
+        </div>
+    </div>
+    
+    
+    </section>

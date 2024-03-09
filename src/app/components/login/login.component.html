@@ -1,0 +1,28 @@
+<section class="bg-main-light p-3 w-75 mx-auto my-3">
+    <form [formGroup]="loginForm" (ngSubmit)="handelForm()">  
+        <div class="mb-2">
+            <label for="email">email:</label>
+            <input type="email" class="form-control" formControlName="email" id="email" #inputemail>
+            <div class="alert alert-danger w-50" *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || inputemail.value.length > 0)">
+                <p *ngIf="loginForm.get('email')?.getError('required')">email is required</p>
+                <p *ngIf="loginForm.get('email')?.getError('email')">email should have @ form</p>
+            </div>
+        </div>
+        
+        <div class="mb-2">
+            <label for="password">password:</label>
+            <input type="password" class="form-control" formControlName="password" id="password" #inputpassword>
+            <div class="alert alert-danger w-50" *ngIf="loginForm.get('password')?.errors && (loginForm.get('password')?.touched || inputpassword.value.length > 0)">
+                <p *ngIf="loginForm.get('password')?.getError('required')">password is required</p>
+                <p *ngIf="loginForm.get('password')?.getError('pattern')">password should have capital letter</p>
+            </div>
+        </div>
+        
+        
+        <button class="btn-main">
+             <i class="fas fa-spinner fa-spin" *ngIf="isloading"></i> Login</button>
+             <a routerLink="/forgetpassword" class="text-main ms-auto d-block" role="button">reset password..?</a>
+    </form>
+    <p class="alert alert-danger " *ngIf="errmsg">{{errmsg}}</p>
+   
+</section>

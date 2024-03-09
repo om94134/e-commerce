@@ -1,0 +1,12 @@
+<section>
+    <div>
+        <div class="row g-4 justify-content-center">
+            <div *ngFor="let item of categoires" class="col-sm-6 col-md-4 col-lg-3">
+                <div role="button" class="border border-success rounded shadow p-2" [routerLink]="['/catdetails' , item._id]">
+                    <img [src]="item.image" class="w-100" height="300" [title]="item.name" [alt]="item.image">
+                    <h2 class="text-center text-main">{{item.name}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,31 @@
+<section class="w-75 mx-auto my-3 rounded shadow p-3" *ngIf="productDetails">
+    <div class="row align-items-center">
+        <div class="col-md-2">
+            <owl-carousel-o [options]="detailsoptionas">
+
+                <ng-container *ngFor="let path of productDetails.images">
+                  <ng-template carouselSlide>
+                    <img [src]="path" class="w-100">
+                </ng-template>
+                </ng-container>
+            
+              </owl-carousel-o>
+        </div>
+        <div class="col-md-10">
+            <div>
+                <h3 class="h5">{{productDetails.title}}</h3>
+                <p class="text-muted">{{productDetails.description}}</p>
+                <h4 class="h6">{{productDetails.category.name}}</h4>
+                <div class="d-flex align-items-center justify-content-between small">
+                    <span class="small">{{productDetails.price | currency:"EGP"}}</span>
+                     <p class="mb-0">
+                        <i class="fas fa-star rating-color"></i>
+                        <span>{{productDetails.ratingsAverage}}</span>
+                     </p>
+               
+                 </div>
+                 <button class="btn-main w-100 p-2" #btnadd (click)="goToCart(productDetails._id , btnadd)">add to cart</button>
+                </div>
+        </div>
+    </div>
+</section>
